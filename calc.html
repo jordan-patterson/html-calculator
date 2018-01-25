@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"> 
+		<title>Calculator</title>
+		<style>
+			input[type="button"],input[type="reset"]{
+				background-color: white;
+				color:black;
+				padding:12px;
+				
+				border:0px solid black;
+				
+				cursor: pointer;
+				width:60px;
+				/*
+				border-radius: 4px;
+				*/
+			}
+			input[type="button"]:hover{
+				background-color: #0064bc;
+				color:white;
+			}
+			input[type="text"]{
+				
+				width:215px;
+
+				padding:12px;
+				background-color: #0f2830;
+				background-color: #006a70;
+				background-color: #2f243d;
+				background-color: #000000;
+				color:white;
+				height: 80px;
+				font-size: 25px;
+				border-radius: 5px;
+			}
+			td{
+				margin:0px;
+				border-collapse: collapse;
+			}
+			table{
+				background-color: #f4b042;
+				border-radius: 8px;
+				border: 1px solid white;
+			}
+			input.side{
+				background-color:#2e5f70;
+				background-color: #f4b042;
+				color:white;
+				color:black;
+			}
+			#calc{
+				margin-top: 40px;
+			}
+		</style>
+	</head>
+	<body>
+		<center>
+		<form name="calculator" id="calc">
+			<table cellspacing="0" cellpadding="0">
+				<tr>
+					<input name="expression" id="answer" type="text" value="" disabled="disabled">
+				</tr>
+				<tr>
+					<td><input type="button" value="7" onclick="addToExp(7)"></td>
+					<td><input type="button" value="8" onclick="addToExp(8)"></td>
+					<td><input type="button" value="9" onclick="addToExp(9)"></td>
+					<td><input class="side" type="button" value="DEL" onclick="del()"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="4" onclick="addToExp(4)"></td>
+					<td><input type="button" value="5" onclick="addToExp(5)"></td>
+					<td><input type="button" value="6" onclick="addToExp(6)"></td>
+					<td><input class="side" type="button" value="/" onclick="addToExp('/')"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="1" onclick="addToExp(1)"></td>
+					<td><input type="button" value="2" onclick="addToExp(2)"></td>
+					<td><input type="button" value="3" onclick="addToExp(3)"></td>
+					<td><input class="side" type="button" value="x" onclick="addToExp('*')"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="." onclick="addToExp('.')"></td>
+					<td><input type="button" value="0" onclick="addToExp(0)"></td>
+					<td><input type="button" value="=" onclick="getAnswer()"></td>
+					<td><input class="side" type="button" value="+" onclick="addToExp('+')"></td>
+				</tr>
+				<tr>
+					<td><input type="button" class="side" value="(" onclick="addToExp('(')"></td>
+					<td><input type="reset" class="side" value="C" onclick="clear()"></td>
+					<td><input type="button" class="side" value=")" onclick="addToExp(')')"></td>
+					<td><input class="side" type="button" value="-" onclick="addToExp('-')"></td>
+				</tr>
+			</table>
+		</form>
+	</center>
+	<script type="text/javascript">
+		function addToExp(num) {
+			var ans = document.getElementsByName("expression")[0];
+			//ans.value+=num;
+			insertAtCursor(ans,num)
+		}
+		function clear(){
+			var ans = document.getElementsByName("expression")[0];
+			ans.value ="";
+		}
+		function del(){
+			var exp = document.getElementById("answer");
+			exp.value = exp.value.slice(0,-1);
+			//return false;
+		}
+		function getAnswer(){
+			var exp = document.getElementById("answer").value;
+			if(exp!=""){
+				var answer = eval(exp);
+				document.getElementById("answer").value=answer;
+			}
+		}
+	</script>	
+	</body>
+</html>
